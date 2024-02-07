@@ -1,0 +1,41 @@
+void I2C_terima()
+{
+  Wire.requestFrom(I2C_SLAVE, 7);
+  while (Wire.available() < 7); 
+  for(int r = 0; r < 7; r++)
+  {
+    dataTerima[r] = Wire.read();
+    Serial.print(dataTerima[r]);
+    Serial.print("\t");
+  }
+  Serial.println();
+  hasilInfus1 = ((dataTerima[1] << 8) + dataTerima[2]) / 10;
+  hasilInfus2 = ((dataTerima[3] << 8) + dataTerima[4]) / 10;
+  myBPM1 = dataTerima[5];
+  myBPM2 = dataTerima[6];     
+}
+
+Arduino: 1.8.5 (Windows 10), Board: "Arduino Nano, ATmega328P"
+
+C:\Users\DHEWAR~1\AppData\Local\Temp\cc4ZXpfC.ltrans0.ltrans.o: In function `main':
+
+C:\Program Files (x86)\Arduino\hardware\arduino\avr\cores\arduino/main.cpp:43: undefined reference to `setup'
+
+C:\Program Files (x86)\Arduino\hardware\arduino\avr\cores\arduino/main.cpp:46: undefined reference to `loop'
+
+collect2.exe: error: ld returned 1 exit status
+
+Multiple libraries were found for "OneWire.h"
+ Used: C:\Users\dhewa radya\Documents\Arduino\libraries\OneWire
+ Not used: C:\Users\dhewa radya\Documents\Arduino\libraries\OneWire-master
+ Not used: C:\Program Files (x86)\Arduino\libraries\OneWire
+ Not used: C:\Program Files (x86)\Arduino\libraries\DallasTemperature
+Multiple libraries were found for "DallasTemperature.h"
+ Used: C:\Users\dhewa radya\Documents\Arduino\libraries\DallasTemperature
+ Not used: C:\Program Files (x86)\Arduino\libraries\DallasTemperature
+exit status 1
+Error compiling for board Arduino Nano.
+
+This report would have more information with
+"Show verbose output during compilation"
+option enabled in File -> Preferences.
